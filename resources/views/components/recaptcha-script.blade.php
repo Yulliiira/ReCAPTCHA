@@ -3,14 +3,10 @@
         event.preventDefault();
 
         grecaptcha.ready(function() {
-            grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {
-                action: 'contact-form'
-            }).then(function(token) {
-                $('#contactUSForm').prepend(
-                    '<input type="hidden" name="g-recaptcha-response" value="' + token + '">'
-                );
+            grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {action: 'subscribe_newsletter'}).then(function(token) {
+                $('#contactUSForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
                 $('#contactUSForm').unbind('submit').submit();
-            });
+            });;
         });
     });
 </script>
